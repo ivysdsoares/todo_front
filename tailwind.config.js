@@ -109,21 +109,22 @@ module.exports = {
                 label: "26px"
             },
             boxShadow: {
-                "elevation":
+                elevation:
                     " 0 1px 1px hsl(0deg 0% 0% / 0.075), 0 2px 2px hsl(0deg 0% 0% / 0.075), 0 4px 4px hsl(0deg 0% 0% / 0.075),  0 8px 8px hsl(0deg 0% 0% / 0.075),  0 16px 16px hsl(0deg 0% 0% / 0.075) ",
-                     "input":
-                    `0 0px 1px 0px hsl(0deg 0% 0% / 0.05),
-                    0px -1px 0px 0px hsl(0deg 0% 0% / 0.05),
+                input: `0 0px 1px 0px hsl(0deg 0% 0% / 0.05),
+                  
                      0px 3px 1px 0px hsl(0deg 0% 0% / 0.01),
-                    0px 2px 2px 1px hsl(0deg 0% 0% / 0.05),
-                    0px 1px 0px 0px hsl(0deg 0% 0% / 0.05),
-                    0px 2px 1px 0px hsl(0deg 0% 0% / 0.05),
-                    2px 0px 1px hsl(0deg 0% 0% / 0.05),
-                    1px 0px 0px hsl(0deg 0% 0% / 0.05),
-                    -2px 0px 1px hsl(0deg 0% 0% / 0.05),
-                    -1px 0px 0px hsl(0deg 0% 0% / 0.05),
+    
+                    2px 0px 5px hsl(0deg 0% 0% / 0.05),
+                   
+                    -2px 0px 5px hsl(0deg 0% 0% / 0.05),
+                
                     0 0px 5px 0px hsl(0deg 0% 0% / 0.01)
                     `
+            },
+            fontSize: {
+               label: ["0.9rem", "1xrem"],
+               
             },
             fontFamily: {
                 title: ["MuseoModerno"],
