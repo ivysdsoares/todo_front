@@ -1,0 +1,52 @@
+// /* eslint-disable react/jsx-props-no-spreading */
+// import React from "react";
+// import { BorderProps, ContainerProps, LabelProps } from "./.types";
+
+// declare module "react" {
+//     interface HTMLDivElement
+//         extends AriaAttributes,
+//             DOMAttributes<HTMLDivElement> {
+//         blocked: string;
+//         error: string;
+//     }
+// }
+
+// function Container({ children, get_downshift }: ContainerProps): JSX.Element {
+//     return (
+//         <div {...get_downshift} className="container">
+//             {children}
+//         </div>
+//     );
+// }
+
+// function Border({
+//     children,
+//     error,
+//     blocked,
+//     className
+// }: BorderProps): JSX.Element {
+//     return (
+//         <div tabIndex={-1} className={`border ${className}`}>
+//             {children}
+//         </div>
+//     );
+// }
+
+// function Label({
+//     children,
+//     blocked,
+//     htmlfor,
+//     get_downshift
+// }: LabelProps): JSX.Element {
+//     return (
+//         <label
+//             {...get_downshift}
+//             htmlFor={htmlfor}
+//             blocked={blocked}
+//             className="label"
+//         >
+//             {children}
+//         </label>
+//     );
+// }
+// export default { Label, Border, Container };

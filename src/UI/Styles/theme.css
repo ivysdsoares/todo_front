@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        /* PRIMARY */
+        --primary: #f86e4f;
+        --primary_hover: #f8604f;
+        --primary_active: #db5b48;
+        --primary_disabled: #faa28e; /*noca cor*/
+        /* SECONDARY */
+        --secondary: #4ebdf8;
+        --secondary_hover: #4fcbf8;
+        --secondary_active: #48afdb;
+        --secondary_disabled: #9fd7f4; /*32 87 116*/
+        /* BACKGROUND */
+        --background: #f0f0f0;
+        --form: #fafafa;
+        --menu: #e5e0e4;
+        --menu_hover: #d6ccd3;
+
+        /* TEXT */
+        --title: #0f0f0f;
+        --description: #433d41;
+        --subtitle: #59555e;
+        --placeholder: #b3b3b3;
+        /* OTHER */
+        --neutral: #e1e1e1;
+        --border: #d2d2d2;
+    }
+}
+
+.theme-dark {
+    /* PRIMARY */
+    --primary: #f86e4f;
+    --primary_hover: #f8604f;
+    --primary_active: #db5b48;
+    --primary_disabled: #742f20;
+    /* SECONDARY */
+    --secondary: #4ebdf8;
+    --secondary_hover: #4fcbf8;
+    --secondary_active: #48afdb;
+    --secondary_disabled: #205774;
+    /* BACKGROUND */
+    --background: #0f0f0f;
+    --form: #1c1c1c;
+    --menu: #1f1a1d;
+    --menu_hover: #33292f;
+
+    /* TEXT */
+    --title: #f0f0f0;
+    --description: #c2bcc0;
+    --subtitle: #a6a1aa;
+    --placeholder: #4d4d4d;
+    /* OTHER */
+    --neutral: #3d3d3d;
+    --border: #707070;
+}

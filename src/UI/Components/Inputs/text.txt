@@ -1,0 +1,63 @@
+// import idGen from "../../Helpers/idGen.js";
+// import Assets from "./assets";
+// import { TextProps } from "./.types.js";
+
+// export default function Text({
+//     name,
+//     label,
+//     value,
+//     readOnly,
+//     onChange,
+//     onBlur,
+//     error,
+//     password
+// }: TextProps): JSX.Element {
+//     // eslint-disable-next-line no-unneeded-ternary
+//     const [valueF, setValueF] = useState(value ? value : "");
+//     const id = useRef(idGen(10)).current;
+
+//     useEffect(() => {
+//         if (value !== valueF && value) {
+//             setValueF(value);
+//         }
+//     }, [value]);
+
+//     return (
+//         <Assets.Container>
+//             <Assets.Label htmlfor={id} blocked={readOnly.toString()}>
+//                 {label}
+//             </Assets.Label>
+//             <Assets.Border
+//                 error={error.toString()}
+//                 blocked={readOnly.toString()}
+//             >
+//                 <input
+//                     className="input"
+//                     type={password ? "password" : "text"}
+//                     onBlur={(e) => onBlur(valueF)}
+//                     autoComplete="off"
+//                     value={valueF}
+//                     name={name}
+//                     readOnly={readOnly}
+//                     onChange={(e) => {
+//                         onChange(e.target.value);
+//                         setValueF(e.target.value);
+//                     }}
+//                     id={id}
+//                     error={(!!error).toString()}
+//                 />
+//             </Assets.Border>
+//         </Assets.Container>
+//     );
+// }
+
+// Text.defaultProps = {
+//     label: "Placeholder",
+//     name: "",
+//     value: "",
+//     onChange: () => {},
+//     onBlur: () => {},
+//     readOnly: false,
+//     error: false,
+//     password: false
+// };

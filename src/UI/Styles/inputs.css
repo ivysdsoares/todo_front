@@ -1,0 +1,452 @@
+/* /-------------------------------- CONTAINER ------------------------------------/ */
+.container {
+  transition: all 0.2s;
+  min-width: 100px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+}
+/* /-------------------------------- BORDER ------------------------------------/ */
+.border {
+  display: flex;
+  position: relative;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex: 1 1 0%;
+  border: 2px solid rgb(var(--neutral));
+  border-radius: var(--input_round);
+  background-color: transparent;
+  box-sizing: border-box;
+}
+
+.border[error='true'] {
+  border-color: rgb(var(--primary));
+}
+
+.border[error='true']:focus-within {
+  border-color: rgb(var(--primary_hover));
+}
+.border[blocked='true'] {
+  pointer-events: none;
+}
+
+.border:focus-within {
+  border-color: rgb(var(--title));
+}
+/* --- TextArea --- */
+.border .input_textarea {
+  min-height: 7rem;
+  max-height: 7rem;
+}
+/* ---------------- */
+
+/* --- Select Multi --- */
+.border[blocked='true']
+  + .select_multi_selected_box
+  .select_multi_selected_button {
+  background-color: rgb(var(--neutral));
+  justify-content: center;
+  cursor: text;
+}
+.border[blocked='true']
+  + .select_multi_selected_box
+  .select_multi_selected_button
+  .select_multi_text {
+  color: rgb(var(--border));
+}
+
+/* ---------------- */
+
+/* --- SelectButton --- */
+.border:focus-within .select_multi_button_div {
+  color: rgb(var(--title));
+}
+
+.border:focus-within .select_button {
+  color: rgb(var(--title));
+}
+
+/*--------------------*/
+
+/* /------------------------------- LABEL -------------------------------------/ */
+
+.label {
+  font-family: var(--font_body);
+  transition: var(--duration);
+  font-size: var(--text_xs);
+  font-weight: var(--label_weight);
+  padding: var(--label_padding);
+  color: rgba(var(--title));
+  flex: 1 1 0;
+}
+
+.label[blocked='true'] {
+  color: rgb(var(--placeholder));
+  pointer-events: none;
+}
+
+/* /------------------------------ INPUT --------------------------------------/ */
+
+.input {
+  font-family: var(--font_body);
+  min-width: 100px;
+  font-size: var(--text_base);
+  font-weight: var(--input_weight);
+  transition: all 0.2s;
+  padding: var(--input_padding);
+  min-height: var(--input_height);
+  max-height: var(--input_height);
+  flex: 1 1 0;
+  text-align: start;
+  background-color: transparent;
+  color: rgb(var(--title));
+}
+
+.input_select {
+  font-family: var(--font_body);
+  font-size: var(--text_base);
+  font-weight: var(--input_weight);
+  flex: 1 1 0;
+  min-width: 100px;
+  transition: all 0.2s;
+  padding: var(--input_padding);
+  min-height: var(--input_height);
+  max-height: var(--input_height);
+
+  background-color: transparent;
+  color: rgb(var(--title));
+}
+.input:focus {
+  outline: none;
+}
+
+.input[type='datetime-local']::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: invert(0.8) brightness(50%) sepia(100%) saturate(10%)
+    hue-rotate(20deg);
+}
+/* /------------------------------ CHECKBOX --------------------------------------/ */
+
+.checkbox {
+  appearance: none;
+}
+
+.checkbox_selection {
+  display: flex;
+  align-items: center;
+  transition: all 0.2s;
+  padding: 0.3rem;
+  min-height: var(--input_height);
+  max-height: var(--input_height);
+  flex: 1 1 0;
+  background-color: transparent;
+  font-weight: var(--input_weight);
+  font-size: var(--text_base);
+  color: rgb(var(--title));
+}
+
+.checkbox_icon {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--input_round);
+}
+.checkbox_checked-true {
+  flex-grow: 0;
+  display: flex;
+  justify-content: center;
+  transition-duration: 200ms;
+}
+
+.checkbox_checked-false {
+  flex-grow: 0;
+  display: flex;
+  justify-content: center;
+  transition-duration: 200ms;
+}
+
+.checkbox:checked + .checkbox_selection .checkbox_checked-true {
+  flex-grow: 1;
+}
+.checkbox:not(:checked) + .checkbox_selection .checkbox_checked-false {
+  flex-grow: 1;
+}
+
+.checkbox:checked + .checkbox_selection .checkbox_icon {
+  background-color: rgb(var(--primary));
+  color: rgb(255, 255, 255);
+}
+
+.checkbox:not(:checked) + .checkbox_selection .checkbox_icon {
+  background-color: rgb(var(--neutral));
+}
+
+.checkbox + .checkbox_selection .checkbox_icon svg {
+  min-width: var(--checkbox_size);
+  max-width: var(--checkbox_size);
+}
+.checkbox:disabled + .checkbox_selection .checkbox_icon svg {
+  color: rgb(var(--placeholder));
+}
+
+/* /------------------------------ RADIO --------------------------------------/ */
+
+.radio {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  min-width: 120px;
+  box-sizing: border-box;
+}
+
+.radio .radio_options {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  padding: var(--input_padding);
+  max-height: var(--input_height);
+  min-height: var(--input_height);
+  transition: var(--duration);
+  transition-duration: var(--duration);
+}
+
+.radio .radio_options .radio_icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: var(--checkbox_size);
+  min-height: var(--checkbox_size);
+  max-width: var(--checkbox_size);
+  max-height: var(--checkbox_size);
+  border-radius: var(--round);
+  transition: var(--duration);
+}
+/* --- RadioGroup --- */
+.radio_group .radio_options .radio_icon {
+  border-radius: 50rem;
+}
+/* --- --- --- */
+
+.radio .radio_options .radio_text {
+  font-weight: var(--input_weight);
+  padding-left: 0.5rem;
+  color: rgba(var(--title));
+  padding-right: 0.5rem;
+}
+.radio .radio_options[highlighted='true'] {
+  background-color: rgb(var(--menu_hover));
+}
+.radio .radio_options[select='true'] .radio_icon {
+  position: relative;
+  border: var(--px2) solid rgb(var(--secondary));
+  background-color: rgb(var(--secondary));
+}
+.radio .radio_options[select='false'] .radio_icon {
+  position: relative;
+  border: var(--px2) solid rgb(var(--border));
+  background-color: transparent;
+}
+.radio .radio_options[highlight='true'][select='false'] .radio_icon {
+  box-shadow: inset 0 0 0 var(--px2) rgba(var(--secondary_active)),
+    0 0 0 var(--px2) rgba(var(--secondary_hover));
+  border: var(--px2) solid transparent;
+}
+.radio .radio_options[highlight='true'][select='true'] .radio_icon {
+  box-shadow: 0 0 0 var(--px2) rgba(var(--secondary_active));
+  border: var(--px2) solid transparent;
+}
+.radio[blocked='true'].radio_options .radio_text {
+  color: rgb(var(--placeholder));
+}
+.radio .radio_options svg {
+  height: var(--checkmark_size);
+  transition: var(--duration);
+}
+
+.radio .radio_options[select='true'] svg {
+  fill: rgb(var(--background));
+}
+
+.radio .radio_options[select='false'] svg {
+  fill: transparent;
+}
+.radio[blocked='true'] .radio_options .radio_icon {
+  border-color: rgb(var(--placeholder));
+}
+.radio[blocked='true'] .radio_options .radio_text {
+  color: rgb(var(--placeholder));
+}
+
+/* /------------------------------ SELECT --------------------------------------/ */
+
+.select_box {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: 15rem;
+  background-color: rgb(var(--menu));
+  border: var(--px2) solid rgb(var(--menu_hover));
+  padding: 0.2rem;
+  outline: none;
+  overflow: auto;
+}
+
+.select_button {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  position: absolute;
+  outline: none;
+  top: 0px;
+  right: 0.25rem;
+  color: rgb(var(--subtitle));
+}
+
+.select_button:hover {
+  color: rgb(var(--title));
+}
+
+.select_button:disabled {
+  color: rgb(var(--placeholder));
+}
+
+.select_multi_button_div {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  position: absolute;
+  outline: none;
+  top: 0px;
+  right: 0.25rem;
+  color: rgb(var(--subtitle));
+}
+
+.select_multi_button_remove:hover {
+  color: rgb(var(--title));
+}
+
+
+.select_multi_button_open:hover {
+  color: rgb(var(--title));
+}
+.select_multi_button_open:disabled {
+  color: rgb(var(--placeholder));
+}
+
+.select_options {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  padding: var(--label_padding);
+  outline: none;
+}
+.select_options_empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: var(--input_weight);
+  flex-direction: row;
+  position: relative;
+  padding: var(--label_padding);
+  outline: none;
+}
+
+.select_options[highlight='true'] {
+  transition-duration: 200ms;
+  background-color: rgb(var(--menu_hover));
+}
+
+.select_options[item_selected='true'] {
+  color: rgb(var(--secondary));
+}
+
+.select_options[item_selected='true'] svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: -0.5rem;
+  color: rgb(var(--secondary));
+}
+
+.select_options[item_selected='true'] .select_text {
+  color: rgb(var(--secondary));
+  font-family: var(--font_body);
+  font-weight: var(--label_weight);
+}
+
+.select_options[item_selected='true'] .select_subText {
+  color: rgb(var(--secondary_hover));
+}
+.select_options[item_selected='true'] svg {
+  width: 1.5rem;
+  height: 1.5rem;
+
+  color: rgb(var(--secondary));
+}
+
+.select_text {
+  color: rgb(var(--title));
+  font-weight: var(--input_weight);
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.select_subText {
+  color: rgb(var(--subtitle));
+  font-size: var(--text_xs);
+  font-weight: var(--label_weight);
+}
+
+.select_multi_selected_box {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.select_multi_selected_button {
+  display: flex;
+  outline: 0.125rem solid transparent;
+  text-align: left;
+  flex-grow: 1;
+  background-color: rgb(var(--neutral));
+  align-items: center;
+  border-radius: 9999px;
+  margin: 4px;
+  padding: 4px;
+  transition: var(--duration);
+  font-family: var(--font_title);
+}
+.select_multi_selected_button:hover {
+  color: rgb(var(--primary));
+  font-weight: var(--label_weight);
+}
+.select_multi_icon {
+  padding-right: 4px;
+  padding-left: 4px;
+  font-weight: var(--label_weight);
+  transition: var(--duration);
+  color: rgb(var(--subtitle));
+}
+
+.select_multi_selected_button:hover .select_multi_icon {
+  color: rgb(var(--primary_active));
+}
+
+.select_multi_text {
+  padding-right: 4px;
+  padding-left: 4px;
+  color: rgb(var(--subtitle));
+  font-weight: var(--label_weight);
+  transition: var(--duration);
+}
+
+.select_multi_selected_button:hover .select_multi_text {
+  color: rgb(var(--description));
+}
