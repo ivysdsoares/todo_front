@@ -1,12 +1,8 @@
 .gradient-text {
+    display: flex;
     background-image: linear-gradient(60deg, var(--primary), var(--secondary));
     background-clip: text;
     color: transparent;
-}
-#gradient-vertical {
-    --color-stop-1: #00c3ff;
-    --color-stop-2: #77e190;
-    --color-stop-3: #ffff1c;
 }
 .icon-hgradient {
     fill: url(#gradient-vertical) gray;
@@ -14,13 +10,13 @@
 
 @keyframes rotate {
     0% {
-        transform: rotate(0deg);
+        transform: translate(-50% , -50%) rotate(0deg);
     }
     50% {
-        transform: rotate(180deg);
+        transform: translate(-50% , -50%) rotate(180deg);
     }
     100% {
-        transform: rotate(360deg);
+        transform: translate(-50% , -50%) rotate(360deg);
     }
 }
 .gradient-svg {
@@ -40,11 +36,13 @@
     content: "";
     position: absolute;
     z-index: 0;
+    top: 0%;
+    left: 50%;
 
-    width: 150%;
     height: 150%;
+    width: 150%;
     animation-timing-function: linear;
-    background: linear-gradient(to right, var(--primary), var(--secondary));
+    background: linear-gradient(var(--primary), var(--secondary));
     animation-iteration-count: infinite;
     animation-duration: 5000ms;
 

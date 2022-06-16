@@ -4,8 +4,10 @@ interface ISystemState {
     theme: string;
 }
 interface IAuthState {
-    name: string;
-    token: string;
+    name: null | string;
+    email: null | string;
+    photo: null | string;
+    error: false | string;
 }
 interface IProviderProps {
     children: JSX.Element | JSX.Element[];

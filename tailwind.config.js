@@ -120,11 +120,26 @@ module.exports = {
                     -2px 0px 5px hsl(0deg 0% 0% / 0.05),
                 
                     0 0px 5px 0px hsl(0deg 0% 0% / 0.01)
+                    `,  
+                    button: `0 2px 3px 0px hsl(0deg 0% 0% / 0.2),
+                    0px 5px 5px 1px hsl(0deg 0% 0% / 0.15),
+                    2px 0px 3px hsl(0deg 0% 0% / 0.15),
+                    -2px 0px 3px hsl(0deg 0% 0% / 0.15)                   
+                    `,
+                     "button-active": `0 0px 3px 0px hsl(0deg 0% 0% / 0.05),
+                    0px 3px 5px 0px hsl(0deg 0% 0% / 0.2),
+                    2px 0px 2px hsl(0deg 0% 0% / 0.05),
+                    -2px 0px 2px hsl(0deg 0% 0% / 0.05)                   
+                    `,
+                     "button-focus": `0 2px 3px 0px hsl(0deg 0% 0% / 0.2),
+                    0px 3px 2px 0px hsl(0deg 0% 0% / 0.1),
+                    2px 0px 3px hsl(0deg 0% 0% / 0.1),
+                    -2px 0px 3px hsl(0deg 0% 0% / 0.1)                   
                     `
             },
             fontSize: {
-               label: ["0.9rem", "1xrem"],
-               
+               label: ["0.9rem", "1rem"],
+               "6xl": ["3.75rem", "4.5rem"],
             },
             fontFamily: {
                 title: ["MuseoModerno"],

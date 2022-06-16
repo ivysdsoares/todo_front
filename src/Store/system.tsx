@@ -10,7 +10,7 @@ export const systemSlice = createSlice({
     name: "system",
     initialState,
     reducers: {
-        toggleMode: (state: ISystemState, action: PayloadAction<null>) => {
+        toggleMode: (state: ISystemState, action: PayloadAction<undefined>) => {
             if (state.theme === "light") {
                 state.theme = "dark";
             } else {
@@ -22,5 +22,4 @@ export const systemSlice = createSlice({
 const { reducer } = systemSlice;
 const Actions = { ...systemSlice.actions };
 export { reducer };
-
 export default Actions;

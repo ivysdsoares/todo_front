@@ -6,13 +6,13 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 
 function App() {
     return (
-        <GoogleOAuthProvider clientId="1073341523252-s6oqv70hds6d9sdikpgfs2su07ghnep8.apps.googleusercontent.com">
-            <Redux>
+        <Redux>
+            <GoogleOAuthProvider clientId="1073341523252-s6oqv70hds6d9sdikpgfs2su07ghnep8.apps.googleusercontent.com">
                 <ThemeProvider>
                     <RoutesWrapper />
                 </ThemeProvider>
-            </Redux>
-        </GoogleOAuthProvider>
+            </GoogleOAuthProvider>
+        </Redux>
     );
 }
 

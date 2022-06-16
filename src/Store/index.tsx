@@ -11,10 +11,12 @@ import { PersistGate } from "redux-persist/integration/react";
 import storageSession from "redux-persist/lib/storage/session";
 import { combineReducers } from "redux";
 import { reducer as ThemeReducer } from "./system";
+import { reducer as AuthReducer } from "./auth";
 import { IProviderProps } from "./types";
 
 const reducers = combineReducers({
-    system: ThemeReducer
+    system: ThemeReducer,
+    auth: AuthReducer
 });
 
 const persistConfig = {

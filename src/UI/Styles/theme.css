@@ -7,12 +7,12 @@
         /* PRIMARY */
         --primary: #f86e4f;
         --primary_hover: #f8604f;
-        --primary_active: #db5b48;
+        --primary_active: #d9543f;
         --primary_disabled: #faa28e; /*noca cor*/
         /* SECONDARY */
         --secondary: #4ebdf8;
         --secondary_hover: #4fcbf8;
-        --secondary_active: #48afdb;
+        --secondary_active: #3fabd9;
         --secondary_disabled: #9fd7f4; /*32 87 116*/
         /* BACKGROUND */
         --background: #f0f0f0;
@@ -35,15 +35,15 @@
     /* PRIMARY */
     --primary: #f86e4f;
     --primary_hover: #f8604f;
-    --primary_active: #db5b48;
+    --primary_active: #d9543f;
     --primary_disabled: #742f20;
     /* SECONDARY */
     --secondary: #4ebdf8;
     --secondary_hover: #4fcbf8;
-    --secondary_active: #48afdb;
+    --secondary_active: #3fabd9;
     --secondary_disabled: #205774;
     /* BACKGROUND */
-    --background: #0f0f0f;
+    --background: #171717;
     --form: #1c1c1c;
     --menu: #1f1a1d;
     --menu_hover: #33292f;

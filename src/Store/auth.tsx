@@ -3,20 +3,27 @@ import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import { IAuthState } from "./types";
 
 const initialState: IAuthState = {
-    name: "",
-    token: ""
+    name: null,
+    email: null,
+    photo: null,
+    error: false
 };
 
 export const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
-        toggleMode: (state: IAuthState, action: PayloadAction<null>) => {
-            if (state.name === "light") {
-                state.name = "dark";
-            } else {
-                state.name = "light";
-            }
+        onSubmit: (state, action: PayloadAction<IAuthState>) => {
+            state.name = action.payload.name;
+            state.email = action.payload.email;
+            state.photo = action.payload.photo;
+            state.error = action.payload.error;
+        },
+        removeAuth: (state, action: PayloadAction<undefined>) => {
+            state.name = initialState.name;
+            state.email = initialState.email;
+            state.photo = initialState.photo;
+            state.error = initialState.error;
         }
     }
 });

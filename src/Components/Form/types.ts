@@ -1,5 +1,5 @@
-import { JsxEmit } from "typescript";
 
+// TEXT INPUT
 interface ITextProps {
     name?: string;
     label: string;
@@ -10,16 +10,30 @@ interface ITextProps {
     password: boolean;
 }
 
+// GRADIENT BUTTON
 interface IGradientButtonCommonProps {
     className: string;
     onClick:React.MouseEventHandler<HTMLButtonElement>;
   
 }
-
 type TGradientButtonConditionalProps=
-|{children?:JSX.Element|JSX.Element[]}
-|{title?:string};
-
+|{children?:JSX.Element|JSX.Element[] ; title:never}
+|{title?:string, children:never};
 type IGradientButtonProps = TGradientButtonConditionalProps & IGradientButtonCommonProps
 
-export type {ITextProps,IGradientButtonProps}
+// BUTTON 
+
+interface IButtonCommonProps {
+    className: string;
+    onClick:React.MouseEventHandler<HTMLButtonElement>;
+    color:'primary'|'secondary'
+}
+
+type TButtonConditionalProps=
+|{children?:JSX.Element|JSX.Element[] ; title:never}
+|{title?:string, children:never};
+
+type IButtonProps = TButtonConditionalProps & IButtonCommonProps
+
+ 
+export type {ITextProps,IGradientButtonProps,IButtonProps}
