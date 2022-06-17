@@ -12,24 +12,20 @@ function GoogleAuthComponent(): JSX.Element {
             Actions.onSubmit({
                 name: null,
                 email: null,
-                photo: null,
                 error: "Validação inválida"
             })
         );
         return null;
     }
-    type Picture={
-        picture:string
-    }
+
     function onSuccess(credentialResponse: CredentialResponse) {
         if (credentialResponse.credential) {
-            const parsed: IAuthState & Picture = jwtDecode(credentialResponse.credential);
+            const parsed: IAuthState = jwtDecode(credentialResponse.credential);
             dispatch(
                 Actions.onSubmit({
                     name: parsed.name,
                     email: parsed.email,
                     error: false,
-                    photo: parsed.picture
                 })
             );
             return null;

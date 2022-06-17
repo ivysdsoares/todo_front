@@ -14,7 +14,6 @@ import Permissions from "./Permissions";
 
 function RoutesWrapper(): JSX.Element {
     const authState = useAppSelector((state) => state.auth);
-    console.log(window.location);
 
     return (
         <Router>
@@ -49,6 +48,7 @@ function RoutesWrapper(): JSX.Element {
                         }
                     >
                         <Route index element={<Pages.Tasks.Dashboard />} />
+                        <Route path='new-task' element={<Pages.Tasks.NewTask />} />
                     </Route>
                 </Route>
             </Routes>

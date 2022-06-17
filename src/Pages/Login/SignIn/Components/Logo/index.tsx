@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { CalendarIcon } from "@heroicons/react/outline";
-import "../Styles/styles.css";
+import "./styles.css";
 
 function LogoComponent(): JSX.Element {
     return (

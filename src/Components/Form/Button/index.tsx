@@ -1,17 +1,34 @@
+/* eslint-disable react/button-has-type */
 import React from "react";
 import { IButtonProps } from "../types";
 
+function isLoading(
+    loading: boolean,
+    children: JSX.Element | JSX.Element[] | undefined,
+    title: string | undefined
+): JSX.Element | null | string {
+    if (loading) return <div />;
+    if (title) return title;
+    if (children) return <> {children} </>;
+    return null;
+}
 export default function Button({
     onClick,
     children,
     title,
     color,
-    className
+    className,
+    type,
+    loading,
+    disabled
 }: IButtonProps): JSX.Element {
     return (
         <button
-            type="button"
-            className={`${className} outline-none   font-bold 
+            type={type}
+            disabled={disabled || loading}
+            className={`${className} 
+            flex justify-center items-center
+            outline-none   font-bold 
             bg-${color}
             hover:bg-${color}_hover 
             hover:shadow-button
@@ -20,11 +37,12 @@ export default function Button({
             active:bg-${color}_active 
             active:shadow-button-active
             text-title
+            disabled={disabled || loading}
             duration-200 rounded-md 
             h-12 `}
             onClick={onClick}
         >
-            {title || children}
+            {isLoading(loading, children, title)}
         </button>
     );
 }
@@ -36,5 +54,8 @@ Button.defaultProps = {
     children: undefined,
     title: undefined,
     className: "",
-    color: "primary"
+    color: "primary",
+    type: "button",
+    loading: false,
+    disabled: false
 };

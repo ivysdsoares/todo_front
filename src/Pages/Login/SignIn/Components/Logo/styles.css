@@ -4,9 +4,6 @@
     background-clip: text;
     color: transparent;
 }
-.icon-hgradient {
-    fill: url(#gradient-vertical) gray;
-}
 
 @keyframes rotate {
     0% {
@@ -47,28 +44,4 @@
     animation-duration: 5000ms;
 
     animation-name: rotate;
-}
-.static-gradient-svg {
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    width: fit-content;
-}
-.static-gradient-svg svg {
-    position: relative;
-    z-index: 1;
-}
-.static-gradient-svg:before {
-    content: "";
-    position: absolute;
-    z-index: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to right, var(--primary), var(--secondary));
-}
-.gradient-button {
-    background: linear-gradient(to bottom, var(--primary), var(--secondary));
 }

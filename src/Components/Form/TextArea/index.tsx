@@ -2,14 +2,13 @@ import React, { useEffect, useRef, useState } from "react";
 import idGen from "Functions/idGen";
 import { ITextProps } from "../types";
 
-export default function Text({
+export default function TextArea({
     name,
     label,
     value,
     disabled,
     onChange,
-    error,
-    password
+    error
 }: ITextProps) {
     // eslint-disable-next-line no-unneeded-ternary
     const [valueF, setValueF] = useState<string>(value ? value : "");
@@ -25,7 +24,7 @@ export default function Text({
         <>
             <div
                 className={`  ${error ? "border-red_text" : "border-border"} 
-                h-12 p-1
+                h-20 p-1
                 duration-200 border-b-2 
                 rounded-md shadow-none 
                 bg-neutral group border-border 
@@ -41,8 +40,7 @@ export default function Text({
                 >
                     {label}
                 </label>
-                <input
-                    type={password ? "password" : "text"}
+                <textarea
                     autoComplete="off"
                     value={valueF}
                     name={name}
@@ -52,7 +50,7 @@ export default function Text({
                     }}
                     id={id}
                     disabled={disabled}
-                    className="w-full h-6 px-4 duration-200 bg-transparent outline-none  peer text-title focus:"
+                    className="w-full h-14 px-4 duration-200 bg-transparent outline-none  peer text-title focus:"
                 />
             </div>
             {error && (
@@ -62,7 +60,7 @@ export default function Text({
     );
 }
 
-Text.defaultProps = {
+TextArea.defaultProps = {
     label: "Placeholder",
     name: "",
     value: "",

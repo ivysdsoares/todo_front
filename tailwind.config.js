@@ -111,35 +111,30 @@ module.exports = {
             boxShadow: {
                 elevation:
                     " 0 1px 1px hsl(0deg 0% 0% / 0.075), 0 2px 2px hsl(0deg 0% 0% / 0.075), 0 4px 4px hsl(0deg 0% 0% / 0.075),  0 8px 8px hsl(0deg 0% 0% / 0.075),  0 16px 16px hsl(0deg 0% 0% / 0.075) ",
-                input: `0 0px 1px 0px hsl(0deg 0% 0% / 0.05),
-                  
-                     0px 3px 1px 0px hsl(0deg 0% 0% / 0.01),
-    
-                    2px 0px 5px hsl(0deg 0% 0% / 0.05),
-                   
-                    -2px 0px 5px hsl(0deg 0% 0% / 0.05),
-                
-                    0 0px 5px 0px hsl(0deg 0% 0% / 0.01)
-                    `,  
-                    button: `0 2px 3px 0px hsl(0deg 0% 0% / 0.2),
+                "elevation-1":
+                    " 0 1px 1px hsl(0deg 0% 0% / 0.075), 0 2px 2px hsl(0deg 0% 0% / 0.075), 0 4px 4px hsl(0deg 0% 0% / 0.075),  0 8px 8px hsl(0deg 0% 0% / 0.075) ",
+                card: `0 0px 2px 0px hsl(0deg 0% 0% / 0.2), 
+                        0px 2px 5px 0px hsl(0deg 0% 0% / 0.1)
+                        `,
+                button: `0 2px 3px 0px hsl(0deg 0% 0% / 0.2),
                     0px 5px 5px 1px hsl(0deg 0% 0% / 0.15),
                     2px 0px 3px hsl(0deg 0% 0% / 0.15),
                     -2px 0px 3px hsl(0deg 0% 0% / 0.15)                   
                     `,
-                     "button-active": `0 0px 3px 0px hsl(0deg 0% 0% / 0.05),
+                "button-active": `0 0px 3px 0px hsl(0deg 0% 0% / 0.05),
                     0px 3px 5px 0px hsl(0deg 0% 0% / 0.2),
                     2px 0px 2px hsl(0deg 0% 0% / 0.05),
                     -2px 0px 2px hsl(0deg 0% 0% / 0.05)                   
                     `,
-                     "button-focus": `0 2px 3px 0px hsl(0deg 0% 0% / 0.2),
+                "button-focus": `0 2px 3px 0px hsl(0deg 0% 0% / 0.2),
                     0px 3px 2px 0px hsl(0deg 0% 0% / 0.1),
                     2px 0px 3px hsl(0deg 0% 0% / 0.1),
                     -2px 0px 3px hsl(0deg 0% 0% / 0.1)                   
                     `
             },
             fontSize: {
-               label: ["0.9rem", "1rem"],
-               "6xl": ["3.75rem", "4.5rem"],
+                label: ["0.9rem", "1rem"],
+                "6xl": ["3.75rem", "4.5rem"]
             },
             fontFamily: {
                 title: ["MuseoModerno"],

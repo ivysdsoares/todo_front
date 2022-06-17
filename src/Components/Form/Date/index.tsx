@@ -1,16 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import idGen from "Functions/idGen";
-import { ITextProps } from "../types";
+import { IDateProps } from "../types";
 
-export default function Text({
+function Date({
     name,
     label,
     value,
     disabled,
     onChange,
     error,
-    password
-}: ITextProps) {
+    type
+}: IDateProps) {
     // eslint-disable-next-line no-unneeded-ternary
     const [valueF, setValueF] = useState<string>(value ? value : "");
     const id = useRef(idGen(10)).current;
@@ -42,7 +42,7 @@ export default function Text({
                     {label}
                 </label>
                 <input
-                    type={password ? "password" : "text"}
+                    type={type}
                     autoComplete="off"
                     value={valueF}
                     name={name}
@@ -62,7 +62,8 @@ export default function Text({
     );
 }
 
-Text.defaultProps = {
+export default Date;
+Date.defaultProps = {
     label: "Placeholder",
     name: "",
     value: "",
@@ -71,5 +72,5 @@ Text.defaultProps = {
     },
     disabled: false,
     error: false,
-    password: false
+    type:'datetime-local'
 };

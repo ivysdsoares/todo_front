@@ -6,8 +6,8 @@ interface ISystemState {
 interface IAuthState {
     name: null | string;
     email: null | string;
-    photo: null | string;
     error: false | string;
+    loading?: boolean;
 }
 interface IProviderProps {
     children: JSX.Element | JSX.Element[];

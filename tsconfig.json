@@ -18,5 +18,10 @@
         "jsx": "react-jsx"
     },
     "exclude": ["tailwind.config.js"],
-    "include": ["src", "src/UI/Components/Inputs/text.tsx", "src/UI/Components/Inputs/assets.tsx", "src/UI/Components/Inputs/types.ts"]
+    "include": [
+        "src",
+        "src/UI/Components/Inputs/text.tsx",
+        "src/UI/Components/Inputs/assets.tsx",
+        "src/UI/Components/Inputs/types.ts"
+    ]
 }
