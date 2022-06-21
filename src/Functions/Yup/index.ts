@@ -27,6 +27,10 @@ yup.setLocale({
     array: {
         min: "Minimo de ${min} itens",
         max: "Máximo ${max} itens"
+    },
+    date:{
+        min:"A data deve ser após ${min}",
+        max:"A data deve ser antes de ${max}"
     }
 });
 

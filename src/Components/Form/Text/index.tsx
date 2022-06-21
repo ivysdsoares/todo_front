@@ -3,13 +3,14 @@ import idGen from "Functions/IdGen";
 import { ITextProps } from "../types";
 import Error from "../Error";
 
-export default function TextArea({
+export default function Text({
   name,
   label,
   value,
   disabled,
   onChange,
-  error
+  error,
+  password
 }: ITextProps) {
   // eslint-disable-next-line no-unneeded-ternary
   const [valueF, setValueF] = useState<string>(value ? value : "");
@@ -25,7 +26,7 @@ export default function TextArea({
     <>
       <div
         className={`  ${error ? "border-red_text" : "border-border"} 
-                h-20 p-1
+                h-12 p-1
                 duration-200 border-b-2 
                 rounded-md shadow-none 
                 bg-neutral group border-border 
@@ -41,7 +42,8 @@ export default function TextArea({
         >
           {label}
         </label>
-        <textarea
+        <input
+          type={password ? "password" : "text"}
           autoComplete="off"
           value={valueF}
           name={name}
@@ -51,7 +53,7 @@ export default function TextArea({
           }}
           id={id}
           disabled={disabled}
-          className="w-full h-14 px-4 duration-200 bg-transparent outline-none disabled:text-subtitle  text-title "
+          className="w-full h-6 px-4 duration-200 bg-transparent outline-none disabled:text-subtitle text-title "
         />
       </div>
       <Error error={error} />
@@ -59,7 +61,7 @@ export default function TextArea({
   );
 }
 
-TextArea.defaultProps = {
+Text.defaultProps = {
   label: "Placeholder",
   name: "",
   value: "",

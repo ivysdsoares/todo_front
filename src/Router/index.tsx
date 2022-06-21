@@ -31,11 +31,7 @@ function RoutesWrapper(): JSX.Element {
                         path="/sign-up"
                         element={
                             <Permissions.NoAuthOnly email={authState.email}>
-                                <>
-                                    {console.log("rerenderizer")}
-
-                                    <Pages.Login.SignUp />
-                                </>
+                                <Pages.Login.SignUp />
                             </Permissions.NoAuthOnly>
                         }
                     />
@@ -48,7 +44,14 @@ function RoutesWrapper(): JSX.Element {
                         }
                     >
                         <Route index element={<Pages.Tasks.Dashboard />} />
-                        <Route path='new-task' element={<Pages.Tasks.NewTask />} />
+                        <Route
+                            path="new-task"
+                            element={<Pages.Tasks.NewTask />}
+                        />
+                        <Route
+                            path="edit-task/:id"
+                            element={<Pages.Tasks.EditTask />}
+                        />
                     </Route>
                 </Route>
             </Routes>

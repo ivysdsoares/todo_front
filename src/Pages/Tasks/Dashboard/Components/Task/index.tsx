@@ -1,25 +1,16 @@
 import { Transition } from "@headlessui/react";
 import { PencilIcon } from "@heroicons/react/solid";
 import React, { memo } from "react";
+import { Link } from "react-router-dom";
+import { ITaskCardProps } from "./types";
 
-interface ITaskProps {
-    id: number;
-    title: string;
-    description: string;
-    expiration_date: string;
-    color: number;
-    onCancel: (id: number) => void;
-    onConfirm: (id: number) => void;
-    loading: boolean;
-    active: boolean;
-}
 function getBorderColor(e: number) {
-    switch (true) {
-        case e % 2 === 0:
-            return "border-red_text";
-        case e % 3 === 0:
+    switch (e) {
+        case 1:
+            return "border-yellow_text";
+        case 2:
             return "border-green_text";
-        case e % 5 === 0:
+        case 3:
             return "border-blue_text";
         default:
             return "border-background";
@@ -36,7 +27,7 @@ function TaskComponent({
     onCancel,
     onConfirm,
     loading
-}: ITaskProps) {
+}: ITaskCardProps) {
     return (
         <Transition
             key={id}
@@ -56,22 +47,22 @@ function TaskComponent({
             <div className="px-6 pt-4 pb-0">
                 <p className="font-bold">{title}</p>
                 <p className="text-xs font-semibold text-placeholder">
-                    Expires:{" "}
-                    {new Date(expiration_date).toLocaleDateString("pt-BR")}
+                    Expires:
+                    {new Date(expiration_date).toLocaleString("pt-BR")}
                 </p>
 
-                <p className="">{description}</p>
+                <p className="whitespace-pre-wrap">{description}</p>
             </div>
 
             <div className="flex flex-col items-stretch p-4 pt-0">
                 <div className="h-[1px] bg-border my-2" />
                 <div className="flex items-center">
-                    <button
-                        type="button"
+                    <Link
+                        to={`edit-task/${id}`}
                         className="p-2 duration-200 rounded-full outline-none text-placeholder hover:bg-neutral hover:text-primary hover:shadow focus-visible:bg-neutral focus-visible:text-primary focus-visible:shadow active:brightness-90"
                     >
                         <PencilIcon className="w-5" />
-                    </button>
+                    </Link>
                     <div className="flex-1" />
                     <button
                         onClick={() => onCancel(id)}

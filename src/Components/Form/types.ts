@@ -48,6 +48,10 @@ interface ITitle{
  interface ISubtitle{
     text:string
 }
+// TITLE PROPS
+ interface IPaperProps{
+    children:JSX.Element|JSX.Element[]
+}
 
 // DATE INPUT
 interface IDateProps {
@@ -59,5 +63,20 @@ interface IDateProps {
     error: boolean | string;
     type:'datetime-local'|'time'|'date'
 }
+// SELECT INPUT
+interface ISelectOptions{
+    label:string;
+    value:string|number;
+    mod:string
+}
+interface ISelectProps {
+    name?: string;
+    label: string;
+    value: string;
+    options:Array<ISelectOptions>;
+    disabled: boolean;
+    onChange: (params: string) => void;
+    error: boolean | string;
+}
 
-export type {ITextProps,IGradientButtonProps,IButtonProps,ITitle,ISubtitle,IDateProps }
+export type {ITextProps,IGradientButtonProps,IButtonProps,ITitle,ISubtitle,IDateProps,ISelectProps, ISelectOptions,IPaperProps }

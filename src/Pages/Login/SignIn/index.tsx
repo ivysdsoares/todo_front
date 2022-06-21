@@ -1,21 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Form from "Components/Form";
 import GoogleAuth from "./Components/GoogleAuth";
 
 import Logo from "./Components/Logo";
 import SignInForm from "./Components/SignInForm";
+import Container from "../Components/Container";
 
 export default function SignIn() {
     return (
-        <div className="flex flex-col-reverse items-center justify-center flex-1 w-full h-full p-0 bg-background sm:p-4 sm:flex-row">
+        <Container>
             <div className="flex flex-col items-stretch">
-                <div className="flex flex-col relative shadow-elevation items-stretch justify-start p-8 bg-form rounded-xl min-w-[300px]">
-                    <p className="text-2xl font-bold text-left font-body text-title ">
-                        Welcome,
-                    </p>
-                    <p className="text-base font-semibold text-start font-body text-subtitle ">
-                        Inform your credentials to continue,
-                    </p>
+                <Form.Paper>
+                    <Form.Title text=" Welcome," />
+                    <Form.Subtitle text="Inform your credentials to continue," />
 
                     <SignInForm />
                     <div className="flex items-center py-2">
@@ -25,9 +23,9 @@ export default function SignIn() {
                     </div>
                     <div className="h-2" />
                     <GoogleAuth />
-                </div>
+                </Form.Paper>
                 <div className="flex justify-center pt-4 text-sm">
-                    <p>No account?{"\xa0"}</p>
+                    <p className="font-body text-title">No account?{"\xa0"}</p>
                     <Link
                         className="font-semibold text-secondary hover:text-secondary_hover"
                         to="/sign-up"
@@ -38,6 +36,6 @@ export default function SignIn() {
             </div>
             <div className="hidden w-10 sm:flex" />
             <Logo />
-        </div>
+        </Container>
     );
 }
