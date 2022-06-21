@@ -24,6 +24,10 @@ export interface ITaskState{
     loading_inactive: boolean;
     inactive_task:Array<ITask>;
     filtered_inactive:Array<ITask>;
+    // dashboard
+    loading_notify:number|false;
+    // dashboard-request status{0 == HIDDEN|1 ==SUCCESS | 2 ==ERROR}
+    notify: 0|1|2 
     // report   
     error_report: false|string;
     loading_report:boolean;
@@ -38,4 +42,9 @@ export interface ITaskState{
 
 export interface ITaskPayload{
     id:number
+}
+
+export interface ITaskStatusReturn{
+    id:number,
+    status:string
 }

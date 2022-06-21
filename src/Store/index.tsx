@@ -23,7 +23,7 @@ const reducers = combineReducers({
 const persistConfig = {
   key: "root",
   storage: storageSession,
-  blacklist: []
+  blacklist: ["task"]
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);

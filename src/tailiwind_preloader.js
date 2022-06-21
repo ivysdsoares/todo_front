@@ -13,5 +13,12 @@ bg-red
 bg-green
 bg-blue
 bg-yellow
-
+hover:bg-red
+hover:bg-green
+focus-active:bg-red
+focus-active:bg-green
+hover:text-red_text
+hover:text-green_text
+focus-active:text-red_text
+focus-active:text-green_text
 `

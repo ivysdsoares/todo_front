@@ -21,9 +21,13 @@ const login = createAsyncThunk(
           } as ILoginReturn)
       )
       .catch((err) => {
+        console.log(err);
         return rejectWithValue({
-          error: err.response.data.message || "Unexpected error ocurred"
-        }as {error:string});
+          error:
+            err.response.data && err.response.data.message
+              ? err.response.data.message
+              : "Unexpected error ocurred"
+        } as { error: string });
       });
   }
 );
@@ -44,8 +48,12 @@ const googleLogin = createAsyncThunk(
           } as ILoginReturn)
       )
       .catch((err) => {
+        console.log(err.response.data);
         return rejectWithValue({
-          error: err.response.data.message || "Unexpected error ocurred"
+          error:
+            err.response.data && err.response.data.message
+              ? err.response.data.message
+              : "Unexpected error ocurred"
         });
       })
 );
@@ -63,7 +71,10 @@ const signUp = createAsyncThunk(
       )
       .catch((err) => {
         return rejectWithValue({
-          error: err.response.data.message || "Unexpected error ocurred"
+          error:
+            err.response.data && err.response.data.message
+              ? err.response.data.message
+              : "Unexpected error ocurred"
         });
       })
 );

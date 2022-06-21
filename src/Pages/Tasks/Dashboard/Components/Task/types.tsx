@@ -4,13 +4,14 @@ interface ITask {
   description: string;
   expiration_date: string;
   color: number;
+  status: string;
 }
 
 interface ICardProps {
-  onCancel: (id: number) => void;
-  onConfirm: (id: number) => void;
-  loading: boolean;
+  onCancel: (task: ITask) => void;
+  onConfirm: (task: ITask) => void;
   active: boolean;
+  status: string;
 }
 
 type ITaskCardProps = ITask & ICardProps;
