@@ -2,14 +2,10 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { act } from "react-dom/test-utils";
 import { toast } from "react-toastify";
 import thunks from "./thunks";
-import {
-  ITaskState,
-  ITask,
-  IReportTask,
-  ITaskStatusReturn
-} from "./types";
+import { ITaskState, ITask, IReportTask, ITaskStatusReturn } from "./types";
 
 const initialState: ITaskState = {
   // Active
@@ -29,15 +25,14 @@ const initialState: ITaskState = {
   // Report
   error_report: false,
   loading_report: true,
-  report_task: null,
+  report_task: {complete:0,failed:0,expired:0,ongoing:0},
   // Create - Edit
-
   alt_error: false,
   alt_loading: true,
   alt_submit_error: false,
   alt_submit_loading: false,
   alt_task: null,
-  alt_navigate:false
+  alt_navigate: false
 };
 
 export const taskSlice = createSlice({
@@ -128,7 +123,7 @@ export const taskSlice = createSlice({
     builder.addCase(
       thunks.changeStatus.pending,
       (state: ITaskState, action) => {
-        state.loading_report = true;
+        state.loading_notify = action.meta.arg.id ;
       }
     ),
       builder.addCase(
@@ -136,12 +131,21 @@ export const taskSlice = createSlice({
         (state: ITaskState, action: PayloadAction<ITaskStatusReturn>) => {
           state.loading_notify = false;
           toast.success(`Task edited successfully`);
-
+          const change={...state.report_task}
+          if( action.payload.status==='COMPLETE'){ 
+              change.complete+=1
+              change.ongoing-=1
+            }else{
+              change.failed+=1
+              change.ongoing-=1
+            }
+          state.report_task=change  
+          const selected=state.active_tasks.filter((i) => i.id === action.payload.id)
+          selected[0].status=action.payload.status
           const new_inactive: Array<ITask> = [
             ...state.inactive_tasks,
-            ...state.active_tasks.filter((i) => i.id === action.payload.id)
+            selected[0]
           ];
-
           state.inactive_tasks = new_inactive;
 
           state.filtered_inactive = new_inactive.filter(
@@ -153,7 +157,6 @@ export const taskSlice = createSlice({
                 .toLowerCase()
                 .includes(state.filter_params_inactive.toLowerCase())
           );
-
           state.active_tasks = state.active_tasks.filter(
             (item) => item.id !== action.payload.id
           );
@@ -178,7 +181,7 @@ export const taskSlice = createSlice({
         thunks.changeStatus.rejected,
         (state: ITaskState, action: PayloadAction<any>) => {
           toast.error(`Task editing failed`);
-          state.loading_report = false;
+         state.loading_notify = false;
           state.error_report = action.payload.error;
         }
       );
@@ -204,37 +207,32 @@ export const taskSlice = createSlice({
     // DETAIL --END
     // CREATE --BEGIN
     builder.addCase(thunks.create.pending, (state: ITaskState, action) => {
-      state.alt_loading = true;
+      state.alt_submit_loading = true;
     }),
       builder.addCase(
         thunks.create.fulfilled,
         (state: ITaskState, action: PayloadAction<{ id: number }>) => {
-          state.alt_loading = false;
-          toast.success("Task has been created", {
-            onClose: () => {
-              state.alt_navigate=true
-            }
-          });
+           state.alt_navigate = true;
+          toast.success("Task has been created");
         }
       ),
       builder.addCase(
         thunks.create.rejected,
         (state: ITaskState, action: PayloadAction<any>) => {
-          state.alt_loading = false;
+          state.alt_submit_loading = false;
           state.alt_error = action.payload.error;
         }
       );
     // CREATE --END
     // EDIT --BEGIN
     builder.addCase(thunks.edit.pending, (state: ITaskState, action) => {
-      state.alt_submit_loading= true;
+      state.alt_submit_loading = true;
     }),
       builder.addCase(
         thunks.edit.fulfilled,
         (state: ITaskState, action: PayloadAction<{ id: number }>) => {
-          state.alt_submit_loading = false;
-          state.alt_navigate=true
-          toast.success("Task has been created");
+          state.alt_navigate = true;
+          toast.success("Task has been edited");
         }
       ),
       builder.addCase(

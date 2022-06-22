@@ -32,7 +32,7 @@ export interface ITaskState{
     // report   
     error_report: false|string;
     loading_report:boolean;
-    report_task:IReportTask|null;
+    report_task:IReportTask;
     // other pages
     alt_error:false|string;
     alt_loading:boolean;

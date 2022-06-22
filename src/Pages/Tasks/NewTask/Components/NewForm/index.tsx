@@ -4,18 +4,14 @@ import { Field, Form } from "react-final-form";
 import { yup, ValidateForm } from "Functions/Yup";
 import { ISelectOptions } from "Components/Form/types";
 import { ReplyIcon } from "@heroicons/react/outline";
-import { Link } from "react-router-dom";
+
 import { ITask } from "Store/Task/types";
 
 const validationSchema = yup.object().shape({
   title: yup.string().min(5).max(30).required(),
   description: yup.string().max(150).nullable(),
-  expiration_date: yup.date().required(),
-  color: yup.number().oneOf([1, 2, 3, 4], "Invalid color").required(),
-  status: yup
-    .string()
-    .oneOf(["ONGOING", "FAILED", "COMPLETE", "EXPIRED"], "Invalid status type")
-    .required()
+  expiration_date: yup.date().min(new Date()).required(),
+  color: yup.number().oneOf([1, 2, 3, 4], "Invalid color").required()
 });
 const options_color: Array<ISelectOptions> = [
   { value: 1, label: "Yellow", mod: "yellow" },
@@ -23,28 +19,19 @@ const options_color: Array<ISelectOptions> = [
   { value: 3, label: "Neutral", mod: "background" },
   { value: 4, label: "Blue", mod: "blue" }
 ];
-const options_status: Array<ISelectOptions> = [
-  { value: "ONGOING", label: "Active", mod: "blue" },
-  { value: "FAILED", label: "Failed", mod: "red" },
-  { value: "COMPLETE", label: "Completed", mod: "green" },
-  { value: "EXPIRED", label: "Expired", mod: "yellow" }
-];
 
-type IOnSubmit = (props: Omit<ITask, "id" & "user_id">) => void;
+type IOnSubmit = (props: Omit<ITask, "id" | "user_id">) => void;
 
-function EditForm({
+function NewForm({
   onSubmit,
-  initialValues,
   loading
 }: {
   onSubmit: IOnSubmit;
-  initialValues: ITask | null;
   loading: boolean;
 }) {
   return (
     <Form
       validate={ValidateForm(validationSchema)}
-      initialValues={initialValues}
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       onSubmit={(e: any) => onSubmit(e)}
     >
@@ -98,26 +85,14 @@ function EditForm({
                 />
               )}
             </Field>
-            <div className="h-3" />
-            <Field name="status">
-              {({ input, meta }) => (
-                <FormEl.Select
-                  label="Status"
-                  options={options_status}
-                  value={input.value}
-                  error={meta.submitFailed && meta.error}
-                  onChange={input.onChange}
-                />
-              )}
-            </Field>
             <div className="h-5" />
             <div className="flex items-center">
               <FormEl.Button
                 loading={loading}
                 className="flex-1"
                 type="submit"
-                title="SAVE CHANGES"
-              />          
+                title="CREATE"
+              />
             </div>
           </div>
         </form>
@@ -125,4 +100,4 @@ function EditForm({
     </Form>
   );
 }
-export default EditForm;
+export default NewForm;

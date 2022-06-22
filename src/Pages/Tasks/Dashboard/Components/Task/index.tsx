@@ -27,7 +27,8 @@ function TaskComponent({
   color,
   onCancel,
   onConfirm,
-  status
+  status,
+  loading
 }: ITaskCardProps) {
   return (
     <div
@@ -56,6 +57,7 @@ function TaskComponent({
             <>
               <Components.ChangeStatusButton
                 color="red"
+                loading={loading}
                 onClick={() => {
                   onCancel({
                     id,
@@ -71,6 +73,7 @@ function TaskComponent({
               <div className="w-2" />
               <Components.ChangeStatusButton
                 color="green"
+                loading={loading}
                 onClick={() => {
                   onConfirm({
                     id,

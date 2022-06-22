@@ -11,7 +11,6 @@ export default function SignUp() {
         <Form.Paper>
           <Form.Title text="Nice to meet you," />
           <Form.Subtitle text="We'd like to know a few things about you..." />
-
           <SignUpForm />
         </Form.Paper>
         <div className="flex justify-center pt-4 text-sm">

@@ -19,7 +19,7 @@ function ListInactive() {
   }, []);
 
   return (
-    <div className="flex flex-col items-stretch justify-start h-full sm:max-h-full max-h-96 p-4 pt-0 overflow-scroll min-h-96 bg-form shadow-elevation rounded-xl">
+    <div className="flex flex-col items-stretch justify-start h-full p-4 px-0 pt-0 overflow-scroll sm:max-h-full max-h-96 sm:px-4 min-h-96 sm:min-h-80 bg-form shadow-elevation rounded-xl">
       <div className="sticky top-0 z-10 flex flex-col items-stretch pt-4 bg-form">
         <p className="px-4 py-2 text-2xl font-semibold text-title ">
           Inactive Tasks
@@ -46,6 +46,7 @@ function ListInactive() {
           <div className="static flex flex-col items-stretch justify-start p-4 space-y-4 b-10 rounded-xl">
             {taskState.filtered_inactive.map((item) => (
               <Task
+                loading={false}
                 status={item.status}
                 key={item.id}
                 color={item.color}

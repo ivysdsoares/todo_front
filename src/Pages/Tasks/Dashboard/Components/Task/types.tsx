@@ -12,6 +12,7 @@ interface ICardProps {
   onConfirm: (task: ITask) => void;
   active: boolean;
   status: string;
+  loading:boolean;
 }
 
 type ITaskCardProps = ITask & ICardProps;

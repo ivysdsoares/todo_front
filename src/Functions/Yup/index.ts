@@ -8,29 +8,29 @@ import { AnyObject } from "yup/lib/types";
 
 yup.setLocale({
     mixed: {
-        default: "Não é válido",
-        required: "*Obrigatório"
+        default: "Not valid",
+        required: "*Required"
     },
     string: {
-        length: "Deve possuir ${length} caracteres",
-        min: "Deve ser maior que ${min} caracteres",
-        max: "Deve ser menor que ${max} caracteres",
-        email: "Email deve ser válido"
+        length: "Must have ${length} character",
+        min: "Must have at least ${min} characters",
+        max: "Must have less than ${max} characters",
+        email: "Email must be valid"
     },
     number: {
-        positive: "*Obrigatório",
-        moreThan: "Deve ser maior que ${min}",
-        lessThan: "Deve ser maior que ${min}",
-        min: "Deve ser maior que ${min} ",
-        max: "Deve ser menor que ${max} "
+        positive: "*Required",
+        moreThan: "Must be bigger than ${min}",
+        lessThan: "Must be smaller than ${min}",
+        min: "Should be at least ${min} ",
+        max: "Should be less than ${max} "
     },
     array: {
-        min: "Minimo de ${min} itens",
-        max: "Máximo ${max} itens"
+        min: "Min of ${min} items",
+        max: "Max of ${max} items"
     },
     date:{
-        min:"A data deve ser após ${min}",
-        max:"A data deve ser antes de ${max}"
+        min:"Date must be after ${min}",
+        max:"Date must be after ${max}"
     }
 });
 

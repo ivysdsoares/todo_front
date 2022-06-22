@@ -2,12 +2,12 @@ import React, { Fragment, useEffect } from "react";
 import FormEl from "Components/Form";
 import { useAppDispatch, useAppSelector } from "Store";
 import Actions from "Store/Task";
-import { ReplyIcon } from "@heroicons/react/outline";
-import { Link, Navigate, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import EditForm from "./Components/EditForm";
 import LoadingErrorState from "./Components/LoadingErrorState";
 import { ITask } from "../Dashboard/Components/Task/types";
+import LinkDashboard from "./Components/LinkDashboard";
 
 function EditTaskForm() {
   const dispatch = useAppDispatch();
@@ -42,15 +42,11 @@ function EditTaskForm() {
         draggable
         pauseOnHover
       />
+
       <FormEl.Paper>
-        <Link
-          to="/logged"
-          className=" absolute top-1 duration-200 hover:text-primary outline-none active:brightness-90 focus-visible:text-primary right-1 flex items-center justify-center p-2 rounded-full text-subtitle hover:bg-neutral"
-        >
-          <ReplyIcon className="w-5" />
-        </Link>
+        <LinkDashboard />
         <FormEl.Title text="Edit Task" />
-        <FormEl.Subtitle text="Change something about yout goal" />
+        <FormEl.Subtitle text="Change something about your goal" />
         <LoadingErrorState
           loading={taskState.alt_loading}
           error={taskState.alt_error}

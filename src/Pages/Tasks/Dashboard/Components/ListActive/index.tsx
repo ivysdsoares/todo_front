@@ -25,7 +25,7 @@ function ListActive() {
   }
 
   return (
-    <div className="flex flex-col items-stretch justify-start h-full p-4 pt-0 overflow-scroll max-h-96 sm:max-h-full min-w-1/2 sm:max-w-1/2 min-h-96 bg-form shadow-elevation rounded-xl">
+    <div className="flex flex-col items-stretch justify-start h-full flex-1 p-4 px-0 sm:px-4 pt-0 overflow-scroll max-h-96 sm:max-h-full  sm:max-w-1/2 min-h-96 bg-form shadow-elevation rounded-xl">
       <div className="sticky top-0 z-10 flex flex-col items-stretch pt-4 bg-form">
         <p className="px-4 py-2 text-2xl font-semibold text-title ">
           Active Tasks
@@ -58,6 +58,7 @@ function ListActive() {
           <div className="flex flex-col items-stretch justify-start p-4 space-y-4 b-10 rounded-xl">
             {taskState.filtered_active.map((item) => (
               <Task
+                loading={taskState.loading_notify === item.id}
                 status="ONGOING"
                 key={item.id}
                 color={item.color}

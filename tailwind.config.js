@@ -116,6 +116,11 @@ module.exports = {
                 card: `0 0px 2px 0px hsl(0deg 0% 0% / 0.2), 
                         0px 2px 5px 0px hsl(0deg 0% 0% / 0.1)
                         `,
+                fab: `0px 2px 3px 0px hsl(0deg 0% 0% / 0.3), 
+                        0px 2px 10px 0px hsl(0deg 0% 0% / 0.2),
+                        2px 2px 5px 0px hsl(0deg 0% 0% / 0.2),
+                        0px 2px 10px 0px hsl(0deg 0% 0% / 0.2)
+                        `,
                 button: `0 2px 3px 0px hsl(0deg 0% 0% / 0.2),
                     0px 5px 5px 1px hsl(0deg 0% 0% / 0.15),
                     2px 0px 3px hsl(0deg 0% 0% / 0.15),

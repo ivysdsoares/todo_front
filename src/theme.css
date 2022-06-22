@@ -5,17 +5,17 @@
 @layer base {
   :root {
     /* PRIMARY */
-    --primary: #f86e4f;
-    --primary_rgb: 248, 110, 79;
-    --primary_hover: #f8604f;
-    --primary_active: #d9543f;
-    --primary_disabled: #faa28e; /*noca cor*/
+    --primary: #8d4ff8;
+    --primary_rgb: 141, 79, 248;
+    --primary_hover: #9960fb;
+    --primary_active: #773fd9;
+    --primary_disabled: #b68efa; /*noca cor*/
     /* SECONDARY */
-    --secondary: #4ebdf8;
-    --secondary_rgb: 78, 189, 248;
-    --secondary_hover: #4fcbf8;
-    --secondary_active: #3fabd9;
-    --secondary_disabled: #9fd7f4; /*32 87 116*/
+    --secondary: #6ef84f;
+    --secondary_rgb: 110, 248, 79;
+    --secondary_hover: #7ef862;
+    --secondary_active: #59d93f;
+    --secondary_disabled: #aff49f; /*32 87 116*/
     /* BACKGROUND */
     --background: #f0f0f0;
     --form: #fafafa;
@@ -73,7 +73,7 @@
 
 *::-webkit-scrollbar-thumb {
   background: var(--border);
- margin: 1rem;
+  margin: 1rem;
   border-radius: 1rem;
   border: 0.2rem solid var(--form);
   margin: 2px;

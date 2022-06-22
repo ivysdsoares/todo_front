@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import Form from "Components/Form";
 import ListActive from "./Components/ListActive";
 import ListInactive from "./Components/ListInactive";
 import Report from "./Components/Report";
+import NewTaskLink from "./Components/NewTaskLink";
 import "./styles.css";
 
 function Dashboard() {
@@ -29,14 +31,9 @@ function Dashboard() {
       <div className="flex flex-1 flex-col items-stretch">
         <ListInactive />
         <div className="p-2" />
-        <Report/>
+        <Report />
       </div>
-
-      {/* <div className="shadow-elevation flex flex-col h-96 bg-form top-1/2 rounded-xl p-4">
-        <Link to="new-task">
-          <Form.GradientButton className="px-4" title="NOVA TAREFA" />{" "}
-        </Link>
-      </div> */}
+      <NewTaskLink />
     </div>
   );
 }

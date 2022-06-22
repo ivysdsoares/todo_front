@@ -30,6 +30,9 @@ export const userSlice = createSlice({
       state.name = initialState.name;
       state.email = initialState.email;
       state.error = initialState.error;
+    },
+    cleanup:(state:IAuthState)=>{
+      Object.assign(state,initialState)
     }
   },
 

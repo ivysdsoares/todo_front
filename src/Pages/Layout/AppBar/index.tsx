@@ -11,13 +11,15 @@ function AppBar(): JSX.Element {
   const dispatch = useAppDispatch();
 
   return (
-    <div className="flex flex-col items-stretch overflow-visible justify-start w-screen  min-h-screen min-w-screen max-h-screen h-screen ">
+    <div className="flex flex-col items-stretch justify-start w-screen h-screen max-h-screen min-h-screen overflow-visible min-w-screen ">
       <div className="flex flex-col items-stretch justify-start shadow-md bg-form">
         <div className="flex items-center justify-start w-full h-12 px-2 py-1 bg-transparent shadow-inner">
           <p className="flex-1 px-2 text-2xl font-title">
             <b className=" gradient-text w-fit">GoalGetter</b>
           </p>
-          <p className="pl-3 pr-2 text-lg text-placeholder">{authState.name}</p>
+          <p className="hidden px-3 mr-2 text-lg rounded bg-neutral sm:flex text-subtitle">
+            {authState.name}
+          </p>
           <div className="flex p-1 duration-200 rounded-full bg-gradient-to-bl from-primary to-secondary hover:brightness-95">
             <button
               onClick={() => {
@@ -47,7 +49,7 @@ function AppBar(): JSX.Element {
           maxHeight: "calc(100vh - 52px )",
           height: "calc(100vh - 52px )"
         }}
-        className="  flex flex-col items-stretch justify-start flex-1 p-4 px-2 overflow-auto sm:px-8 "
+        className="flex flex-col items-stretch justify-start flex-1 p-4 px-2 overflow-auto  sm:px-8"
       >
         <Outlet />
       </div>

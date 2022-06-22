@@ -12,7 +12,7 @@ const validationSchema = yup.object().shape({
   password: yup.string().min(5).max(16).required(),
   confirm_password: yup
     .string()
-    .oneOf([yup.ref("password"), null], "Senhas devem ser iguais")
+    .oneOf([yup.ref("password"), null], "Passwords must match")
     .required()
 });
 

@@ -4,6 +4,14 @@ import { Listbox, Transition } from "@headlessui/react";
 import { ISelectProps, ISelectOptions } from "../types";
 import Error from "../Error";
 
+function getLabel(options: Array<ISelectOptions>, value: string): string {
+  const filtered = options.filter((a) => a.value === value);
+  if (filtered.length > 0) {
+    return filtered[0].label;
+  }
+  return "";
+}
+
 function Select({
   name,
   label,
@@ -16,17 +24,14 @@ function Select({
   // eslint-disable-next-line no-unneeded-ternary
   const [valueF, setValueF] = useState<string | number>(value ? value : "");
   const [selectedLabel, setSelected] = useState<string | number>(
-    options.filter((a) => a.value === value)[0].label
+    getLabel(options, value)
   );
   const id = useRef(idGen(10)).current;
 
   useEffect(() => {
     if (value !== valueF && value) {
       setValueF(value);
-      const filtered = options.filter((a) => value === a.value);
-      if (filtered.length > 0) {
-        setSelected(filtered[0].label);
-      }
+      setSelected(getLabel(options, value));
     }
   }, [value]);
 

@@ -42,7 +42,7 @@ const getReport = createAsyncThunk(
   "task/get-report",
   async (payload: undefined, { dispatch, rejectWithValue, getState }) => {
     const params = getState() as { auth: IAuthState };
-    return Api.get(`tasks/report/${params.auth.id}}`)
+    return Api.get(`tasks/report/${params.auth.id}`)
       .then((res) => res.data as IReportTask)
       .catch((err) => {
         return rejectWithValue({
@@ -58,7 +58,6 @@ const getReport = createAsyncThunk(
 const changeStatus = createAsyncThunk(
   "task/change-status",
   async (payload: ITask, { dispatch, rejectWithValue, getState }) => {
-    console.log(payload,'aqui')
     return Api.put(`tasks/edit`,{...payload})
       .then((res) => ({id:res.data.id,status:payload.status }) as ITaskStatusReturn)
       .catch((err) => {
@@ -105,7 +104,7 @@ const edit = createAsyncThunk(
 );
 const create = createAsyncThunk(
   "task/create",
-  async (payload:Omit<ITask,'user_id'>, { dispatch, rejectWithValue, getState }) => {
+  async (payload:Omit<ITask,'user_id'|'id'>, { dispatch, rejectWithValue, getState }) => {
     const params = getState() as { auth: IAuthState };
     return Api.post(`/tasks/create`,{...payload ,user_id:params.auth.id})
       .then((res) => res.data as {id:number})

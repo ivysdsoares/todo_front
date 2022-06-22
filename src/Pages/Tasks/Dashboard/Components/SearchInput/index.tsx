@@ -16,7 +16,7 @@ function SearchInputComponent({
         onChange={(e) => {
           onChange(e.target.value);
         }}
-        className="flex-1 bg-transparent outline-none text-title"
+        className="flex-1 flex min-w-0 w-0 bg-transparent outline-none text-title"
       />
       <button
         onClick={() => {
