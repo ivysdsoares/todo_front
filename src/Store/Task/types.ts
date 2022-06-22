@@ -19,15 +19,16 @@ export interface ITaskState{
     loading_active: boolean;
     active_tasks:Array<ITask>;
     filtered_active:Array<ITask>;
+     filter_params_active:string;
     // inactive
     error_inactive: false|string;
     loading_inactive: boolean;
-    inactive_task:Array<ITask>;
+    inactive_tasks:Array<ITask>;
     filtered_inactive:Array<ITask>;
+    filter_params_inactive:string;
     // dashboard
     loading_notify:number|false;
     // dashboard-request status{0 == HIDDEN|1 ==SUCCESS | 2 ==ERROR}
-    notify: 0|1|2 
     // report   
     error_report: false|string;
     loading_report:boolean;
@@ -35,8 +36,10 @@ export interface ITaskState{
     // other pages
     alt_error:false|string;
     alt_loading:boolean;
-    create_status:  ITask| 0 |1 ;
-    edit_status: ITask| 0 | 1;
+    alt_submit_loading:boolean;
+    alt_submit_error:boolean|string;
+    alt_task:ITask|null;
+    alt_navigate:boolean
 
 }
 

@@ -32,7 +32,7 @@ export default function SignUpForm() {
       {(props) => (
         // eslint-disable-next-line react/prop-types
         <form onSubmit={props.handleSubmit}>
-          <div className="flex flex-col items-stretch  py-4 pb-3">
+          <div className="flex flex-col items-stretch py-4 pb-3">
             <Field name="name">
               {({ input, meta }) => (
                 <FormEl.Text

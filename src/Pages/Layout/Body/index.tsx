@@ -2,11 +2,9 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 
 export default function Body(): JSX.Element {
-    return (
-      
-            <div className="bg-background w-screen h-screen  min-h-screen flex flex-col justify-start items-stretch">
-                <Outlet />
-            </div>
-        
-    );
+  return (
+    <div className="flex flex-col font-body items-stretch justify-start w-screen h-screen min-h-screen bg-background">
+      <Outlet />
+    </div>
+  );
 }

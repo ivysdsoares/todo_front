@@ -24,20 +24,20 @@ export default function TextArea({
   return (
     <>
       <div
-        className={`  ${error ? "border-red_text" : "border-border"} 
+        className={`${error ? "border-red_text" : "border-border"} 
                 h-20 p-1
                 duration-200 border-b-2 
                 rounded-md shadow-none 
-                bg-neutral group border-border 
-                focus-within:border-primary `}
+                bg-neutral group 
+                focus-within:border-primary`}
       >
         <label
           htmlFor={id}
           className={`
-                    ${error ? "text-red_text" : "text-subtitle"} 
-                    ${
-                      disabled ? "text-placeholder" : "text-subtitle"
-                    } flex h-4 pl-4 text-xs font-bold duration-200 group-focus-within:text-primary `}
+                  ${error && "text-red_text"} 
+                  ${disabled && "text-placeholder"} 
+                  ${!disabled && !error && "text-subtitle"} 
+                  flex h-4 pl-4 text-xs font-bold duration-200 group-focus-within:text-primary`}
         >
           {label}
         </label>

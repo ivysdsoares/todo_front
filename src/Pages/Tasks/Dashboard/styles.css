@@ -1,0 +1,10 @@
+.dashboard-container {
+  max-height: calc( 100vh - 90px );
+  height: calc( 100vh - 90px );
+}
+@media only screen and (max-width: 640px) {
+  .dashboard-container {
+    max-height: 10000px !important;
+    height: fit-content;
+  }
+}

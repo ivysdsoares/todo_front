@@ -71,5 +71,53 @@ const changeStatus = createAsyncThunk(
       });
   }
 );
+const detail = createAsyncThunk(
+  "task/detail",
+  async (payload:number, { dispatch, rejectWithValue, getState }) => {
+    const params = getState() as { auth: IAuthState };
+    return Api.post(`tasks`,{id:payload ,user_id:params.auth.id})
+      .then((res) => res.data as ITask)
+      .catch((err) => {
+        return rejectWithValue({
+          error:
+            err.response.data && err.response.data.message
+              ? err.response.data.message
+              : "Unexpected error ocurred"
+        });
+      });
+  }
+);
+const edit = createAsyncThunk(
+  "task/edit",
+  async (payload:Omit<ITask,'user_id'>, { dispatch, rejectWithValue, getState }) => {
+    const params = getState() as { auth: IAuthState };
+    return Api.put(`/tasks/edit`,{...payload ,user_id:params.auth.id})
+      .then((res) => res.data as ITask)
+      .catch((err) => {
+        return rejectWithValue({
+          error:
+            err.response.data && err.response.data.message
+              ? err.response.data.message
+              : "Unexpected error ocurred"
+        });
+      });
+  }
+);
+const create = createAsyncThunk(
+  "task/create",
+  async (payload:Omit<ITask,'user_id'>, { dispatch, rejectWithValue, getState }) => {
+    const params = getState() as { auth: IAuthState };
+    return Api.post(`/tasks/create`,{...payload ,user_id:params.auth.id})
+      .then((res) => res.data as {id:number})
+      .catch((err) => {
+        return rejectWithValue({
+          error:
+            err.response.data && err.response.data.message
+              ? err.response.data.message
+              : "Unexpected error ocurred"
+        });
+      });
+  }
+);
 
-export default { getActive, getInactive, getReport ,changeStatus};
+export default { getActive, getInactive, getReport ,changeStatus,detail,create,edit};

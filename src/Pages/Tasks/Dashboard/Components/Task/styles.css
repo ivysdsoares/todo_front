@@ -14,17 +14,26 @@
     transform: translateX(0%);
     display: flex;
   }
-  50% {
-    filter: opacity(50%);
+  80% {
+    filter: opacity(0%);
     transform: translateX(100%);
     display: flex;
+  }
+  90% {
+    filter: opacity(0%);
+    transform: translateX(100%);
+    display: flex;
+    position: static;
   }
   100% {
     filter: opacity(0%);
     transform: translateX(100%);
+    display: none;
+    width: 0px;
     height: 0px;
-    margin: 0px;
-    display:absolute;
+    position: fixed;
+    top: 0;
+    left: 0;
     padding: 0px;
     border: 0px;
   }
@@ -33,7 +42,7 @@
   animation: fade-in;
   animation-delay: 0s;
   animation-iteration-count: 1;
-  transition-duration: 200ms;
+  transition-duration: 0ms;
   animation-duration: 300ms;
   animation-timing-function: ease-in-out;
   transform: translateX(-100%);
@@ -44,8 +53,8 @@
   animation: fade-out;
   animation-delay: 0s;
   animation-iteration-count: 1;
-  transition-duration: 200ms;
-  animation-duration: 300ms;
+  transition-duration: 0ms;
+  animation-duration: 400ms;
   animation-timing-function: ease-in-out;
   transform: translateX(-100%);
   animation-fill-mode: forwards;

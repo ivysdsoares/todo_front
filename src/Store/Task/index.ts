@@ -8,7 +8,6 @@ import {
   ITaskState,
   ITask,
   IReportTask,
-  ITaskPayload,
   ITaskStatusReturn
 } from "./types";
 
@@ -18,23 +17,27 @@ const initialState: ITaskState = {
   loading_active: true,
   active_tasks: [],
   filtered_active: [],
+  filter_params_active: "",
   // Inactive
   error_inactive: false,
   loading_inactive: true,
-  inactive_task: [],
+  inactive_tasks: [],
   filtered_inactive: [],
+  filter_params_inactive: "",
   // DashBoard
   loading_notify: false,
-  notify: 0,
   // Report
   error_report: false,
   loading_report: true,
   report_task: null,
   // Create - Edit
-  create_status: 0,
-  edit_status: 0,
+
   alt_error: false,
-  alt_loading: true
+  alt_loading: true,
+  alt_submit_error: false,
+  alt_submit_loading: false,
+  alt_task: null,
+  alt_navigate:false
 };
 
 export const taskSlice = createSlice({
@@ -44,33 +47,25 @@ export const taskSlice = createSlice({
     cleanUp: (state: ITaskState, action: PayloadAction<undefined>) => {
       Object.assign(state, initialState);
     },
-    filterActive: (
-      state: ITaskState,
-      action: PayloadAction<{ text: string }>
-    ) => {
+    filterActive: (state: ITaskState, action: PayloadAction<string>) => {
+      state.filter_params_active = action.payload;
       state.filtered_active = state.active_tasks.filter(
         (a) =>
-          a.title.toLowerCase().includes(action.payload.text.toLowerCase()) ||
-          a.description
-            .toLowerCase()
-            .includes(action.payload.text.toLowerCase())
+          a.title.toLowerCase().includes(action.payload.toLowerCase()) ||
+          a.description.toLowerCase().includes(action.payload.toLowerCase())
       );
     },
-     filterInactive: (
-      state: ITaskState,
-      action: PayloadAction<{ text: string }>
-    ) => {
-      state.filtered_inactive = state.inactive_task.filter(
+    filterInactive: (state: ITaskState, action: PayloadAction<string>) => {
+      state.filter_params_inactive = action.payload;
+      state.filtered_inactive = state.inactive_tasks.filter(
         (a) =>
-          a.title.toLowerCase().includes(action.payload.text.toLowerCase()) ||
-          a.description
-            .toLowerCase()
-            .includes(action.payload.text.toLowerCase())
+          a.title.toLowerCase().includes(action.payload.toLowerCase()) ||
+          a.description.toLowerCase().includes(action.payload.toLowerCase())
       );
     }
   },
   extraReducers: (builder) => {
-    // active
+    // GET ACTIVE --BEGIN
     builder.addCase(thunks.getActive.pending, (state: ITaskState, action) => {
       state.loading_active = true;
     }),
@@ -89,8 +84,8 @@ export const taskSlice = createSlice({
           state.error_active = action.payload.error;
         }
       );
-
-    // inactive
+    // GET ACTIVE --END
+    // GET INACTIVE --BEGIN
     builder.addCase(thunks.getInactive.pending, (state: ITaskState, action) => {
       state.loading_inactive = true;
     }),
@@ -98,8 +93,8 @@ export const taskSlice = createSlice({
         thunks.getInactive.fulfilled,
         (state: ITaskState, action: PayloadAction<Array<ITask>>) => {
           state.loading_inactive = false;
-          state.inactive_task = action.payload;
-          state.filtered_inactive=action.payload
+          state.inactive_tasks = action.payload;
+          state.filtered_inactive = action.payload;
         }
       ),
       builder.addCase(
@@ -109,7 +104,8 @@ export const taskSlice = createSlice({
           state.error_inactive = action.payload.error;
         }
       );
-    // report
+    // GET INACTIVE --END
+    // GET REPORT --BEGIN
     builder.addCase(thunks.getReport.pending, (state: ITaskState, action) => {
       state.loading_report = true;
     }),
@@ -127,7 +123,8 @@ export const taskSlice = createSlice({
           state.error_report = action.payload.error;
         }
       );
-    // change status
+    // GET REPORT --END
+    // CHANGE STATUS --BEGIN
     builder.addCase(
       thunks.changeStatus.pending,
       (state: ITaskState, action) => {
@@ -139,11 +136,29 @@ export const taskSlice = createSlice({
         (state: ITaskState, action: PayloadAction<ITaskStatusReturn>) => {
           state.loading_notify = false;
           toast.success(`Task edited successfully`);
-          state.inactive_task.push(
-            state.active_tasks.filter((i) => i.id === action.payload.id)[0]
+
+          const new_inactive: Array<ITask> = [
+            ...state.inactive_tasks,
+            ...state.active_tasks.filter((i) => i.id === action.payload.id)
+          ];
+
+          state.inactive_tasks = new_inactive;
+
+          state.filtered_inactive = new_inactive.filter(
+            (a) =>
+              a.title
+                .toLowerCase()
+                .includes(state.filter_params_inactive.toLowerCase()) ||
+              a.description
+                .toLowerCase()
+                .includes(state.filter_params_inactive.toLowerCase())
           );
 
-          state.active_tasks = state.active_tasks.map((item) => {
+          state.active_tasks = state.active_tasks.filter(
+            (item) => item.id !== action.payload.id
+          );
+
+          state.filtered_active = state.filtered_active.map((item) => {
             if (item.id === action.payload.id) {
               return {
                 id: item.id,
@@ -157,20 +172,6 @@ export const taskSlice = createSlice({
             }
             return item;
           });
-              state.filtered_active =  state.filtered_active.map((item) => {
-            if (item.id === action.payload.id) {
-              return {
-                id: item.id,
-                color: item.color,
-                user_id: item.user_id,
-                title: item.title,
-                description: item.description,
-                expiration_date: item.expiration_date,
-                status: action.payload.status
-              };
-            }
-            return item;
-          });;
         }
       ),
       builder.addCase(
@@ -181,6 +182,69 @@ export const taskSlice = createSlice({
           state.error_report = action.payload.error;
         }
       );
+    // CHANGE STATUS --END
+    // DETAIL --BEGIN
+    builder.addCase(thunks.detail.pending, (state: ITaskState, action) => {
+      state.alt_loading = true;
+    }),
+      builder.addCase(
+        thunks.detail.fulfilled,
+        (state: ITaskState, action: PayloadAction<ITask>) => {
+          state.alt_loading = false;
+          state.alt_task = action.payload;
+        }
+      ),
+      builder.addCase(
+        thunks.detail.rejected,
+        (state: ITaskState, action: PayloadAction<any>) => {
+          state.alt_loading = false;
+          state.alt_error = action.payload.error;
+        }
+      );
+    // DETAIL --END
+    // CREATE --BEGIN
+    builder.addCase(thunks.create.pending, (state: ITaskState, action) => {
+      state.alt_loading = true;
+    }),
+      builder.addCase(
+        thunks.create.fulfilled,
+        (state: ITaskState, action: PayloadAction<{ id: number }>) => {
+          state.alt_loading = false;
+          toast.success("Task has been created", {
+            onClose: () => {
+              state.alt_navigate=true
+            }
+          });
+        }
+      ),
+      builder.addCase(
+        thunks.create.rejected,
+        (state: ITaskState, action: PayloadAction<any>) => {
+          state.alt_loading = false;
+          state.alt_error = action.payload.error;
+        }
+      );
+    // CREATE --END
+    // EDIT --BEGIN
+    builder.addCase(thunks.edit.pending, (state: ITaskState, action) => {
+      state.alt_submit_loading= true;
+    }),
+      builder.addCase(
+        thunks.edit.fulfilled,
+        (state: ITaskState, action: PayloadAction<{ id: number }>) => {
+          state.alt_submit_loading = false;
+          state.alt_navigate=true
+          toast.success("Task has been created");
+        }
+      ),
+      builder.addCase(
+        thunks.edit.rejected,
+        (state: ITaskState, action: PayloadAction<any>) => {
+          state.alt_submit_loading = false;
+          state.alt_submit_error = action.payload.error;
+        }
+      );
+    // CREATE --END
   }
 });
 export const { reducer } = taskSlice;

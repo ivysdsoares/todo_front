@@ -37,8 +37,7 @@ function TaskComponent({
     >
       <Components.LinkEditButton id={id} />
       <div className="px-4  pt-4 pb-0">
-        {id}
-        <p className=" text-title font-bold">{title}</p>
+        <p className=" text-title font-bold pr-4">{title}</p>
         <p className="text-xs font-semibold text-placeholder">
           {new Date().toISOString() < expiration_date
             ? "Expires:\xa0"

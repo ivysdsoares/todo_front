@@ -25,28 +25,37 @@ function ListActive() {
   }
 
   return (
-    <div className="flex flex-col items-stretch justify-start h-full max-h-full p-4 pt-0 overflow-scroll sm:max-w-1/2 min-h-52 bg-form shadow-elevation rounded-xl">
-      <div className="sticky top-0 z-10 flex flex-col items-stretch pt-4 border-b border-border bg-form">
-        <p className="px-4 text-2xl font-semibold text-title ">Active Tasks</p>
-        <div className="flex items-center px-4 py-2 rounded-xl ">
+    <div className="flex flex-col items-stretch justify-start h-full p-4 pt-0 overflow-scroll max-h-96 sm:max-h-full min-w-1/2 sm:max-w-1/2 min-h-96 bg-form shadow-elevation rounded-xl">
+      <div className="sticky top-0 z-10 flex flex-col items-stretch pt-4 bg-form">
+        <p className="px-4 py-2 text-2xl font-semibold text-title ">
+          Active Tasks
+        </p>
+        <div className="flex items-center px-4 py-2 pb-3 rounded-xl ">
           <SearchInput
             onChange={(e) => {
-              dispatch(Actions.filterActive({ text: e }));
+              dispatch(Actions.filterActive(e));
+            }}
+            onClear={() => {
+              dispatch(Actions.filterActive(""));
             }}
           />
         </div>
+        <div className="flex px-4">
+          <div className="flex-1 border-b border-border" />
+        </div>
       </div>
-      <div className="static flex flex-col items-stretch justify-start p-4 space-y-4 b-10 rounded-xl">
-        <LoadingErrorState
-          loading={taskState.loading_active}
-          error={taskState.error_active}
+
+      <LoadingErrorState
+        loading={taskState.loading_active}
+        error={taskState.error_active}
+      >
+        <EmptyState
+          length={
+            taskState.filtered_active.filter((i) => i.status === "ONGOING")
+              .length
+          }
         >
-          <EmptyState
-            length={
-              taskState.filtered_active.filter((i) => i.status === "ONGOING")
-                .length
-            }
-          >
+          <div className="flex flex-col items-stretch justify-start p-4 space-y-4 b-10 rounded-xl">
             {taskState.filtered_active.map((item) => (
               <Task
                 status="ONGOING"
@@ -61,9 +70,9 @@ function ListActive() {
                 active={item.status === "ONGOING"}
               />
             ))}
-          </EmptyState>
-        </LoadingErrorState>
-      </div>
+          </div>
+        </EmptyState>
+      </LoadingErrorState>
     </div>
   );
 }

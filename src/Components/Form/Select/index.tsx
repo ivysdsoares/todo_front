@@ -14,8 +14,10 @@ function Select({
   options
 }: ISelectProps) {
   // eslint-disable-next-line no-unneeded-ternary
-  const [valueF, setValueF] = useState<string>(value ? value : "");
-  const [selectedLabel, setSelected] = useState<string | number>("");
+  const [valueF, setValueF] = useState<string | number>(value ? value : "");
+  const [selectedLabel, setSelected] = useState<string | number>(
+    options.filter((a) => a.value === value)[0].label
+  );
   const id = useRef(idGen(10)).current;
 
   useEffect(() => {
@@ -41,23 +43,19 @@ function Select({
         {({ open }) => (
           <>
             <Listbox.Button
-              className={`flex flex-col h-12 p-1 duration-200 border-b-2 rounded-md  bg-neutral group border-border group-focus-within:border-primary ${
-                error ? "border-red_text" : "border-border"
-              }  `}
+              className={`flex flex-col h-12 p-1 outline-none duration-200 border-b-2 rounded-md  bg-neutral group group-focus-within:border-primary 
+              ${error ? "border-red_text" : "border-border"}`}
             >
               <p
-                className={`flex h-4 pl-4 text-xs font-bold duration-200 group-focus-within:text-primary  ${
-                  error ? "text-red_text" : "text-subtitle"
-                } 
-                                ${
-                                  disabled
-                                    ? "text-placeholder"
-                                    : "text-subtitle"
-                                } `}
+                className={`
+                ${error && "text-red_text"} 
+                ${disabled && "text-placeholder"} 
+                ${!disabled && !error && "text-subtitle"}
+                flex h-4 pl-4 text-xs font-bold duration-200 group-focus-within:text-primary`}
               >
                 {label}
               </p>
-              <p className="px-4">{selectedLabel}</p>
+              <p className="px-4 text-title">{selectedLabel}</p>
             </Listbox.Button>
             <Transition
               show={open}
@@ -68,9 +66,9 @@ function Select({
               leave="duration-200"
               leaveFrom="translate-y-0 opacity-100"
               leaveTo="-translate-y-1/2 opacity-0"
-              className="absolute w-full bg-menu rounded-md top-[3.5rem] shadow-elevation"
+              className="absolute w-full bg-menu   z-10 rounded-md top-[3.5rem] shadow-elevation"
             >
-              <Listbox.Options static>
+              <Listbox.Options static className="outline-none text-title">
                 {options.map((item: ISelectOptions) => (
                   <Listbox.Option
                     as={Fragment}
@@ -79,9 +77,9 @@ function Select({
                   >
                     {({ active, selected }) => (
                       <li
-                        className={`flex items-center p-2 last:border-0 first:rounded-t-md last:rounded-b-md border-b bg-menu duration-200 border-border ${
+                        className={`flex items-center p-2 last:border-b-0 first:rounded-t-md last:rounded-b-md border-b bg-menu duration-200 border-border ${
                           active ? "brightness-95" : "brightness-100"
-                        } ${selected ? "border-r-2 border-primary" : ""}`}
+                        } ${selected ? "border-r-4 border-r-primary" : ""}`}
                       >
                         {item.mod && (
                           <div

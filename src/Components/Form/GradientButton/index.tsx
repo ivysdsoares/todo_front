@@ -9,7 +9,7 @@ function isLoading(
 ): JSX.Element | null | string {
     if (loading)
         return (
-            <div className="w-5 h-5 border-b-2 border-background animate-spin rounded-full" />
+          <div className="w-5 h-5 border-b-2 border-background animate-spin rounded-full" />
         );
     if (title) return title;
     if (children) return <> {children} </>;

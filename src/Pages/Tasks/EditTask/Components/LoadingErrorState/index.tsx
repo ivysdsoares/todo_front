@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-useless-fragment */
-import { StatusOfflineIcon } from "@heroicons/react/outline";
+
+import { ExclamationIcon } from "@heroicons/react/outline";
 import React, { ReactNode, useEffect, useState } from "react";
-import "./styles.css";
 
 function parseState(loading: boolean, error: boolean | string): string {
   if (loading) {
@@ -30,7 +30,7 @@ function LoadingErrorState({
   }, [loading, error]);
   if (lastState === "LOADING")
     return (
-      <div className="flex items-center justify-center flex-1 ">
+      <div className="flex items-center justify-center flex-1  py-12">
         <div className="flex items-center justify-center w-24 h-24 rounded-full animate-spin bg-gradient-to-r from-primary to-secondary border-b-secondary">
           <div className="w-20 h-20 rounded-full bg-form " />
         </div>
@@ -38,10 +38,17 @@ function LoadingErrorState({
     );
   if (lastState === "ERROR")
     return (
-      <div className="flex items-center justify-center flex-1 ">
-        <div className="flex items-center justify-center flex-1  p-4   ">
-          <p className=" text-2xl font-semibold  rounded-full p-4 animate-wiggle bg-gradient-to-r from-primary to-secondary  text-center text-red_text">
-            <StatusOfflineIcon className="w-16 h-16 text-form" />
+      <div
+        style={{ backgroundClip: "text" }}
+        className="flex items-center    rounded-md justify-center flex-1 py-12  "
+      >
+        <ExclamationIcon className="w-14  text-red_text" />
+        <div className="flex-1 flex flex-col items-start pl-4">
+          <p className="  text-lg font-bold  text-title">
+            Oops! An error ocurred
+          </p>
+          <p className=" text-base  font-semibold  text-subtitle  text-center  ">
+            {error}
           </p>
         </div>
       </div>

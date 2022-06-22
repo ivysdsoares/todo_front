@@ -21,4 +21,6 @@ hover:text-red_text
 hover:text-green_text
 focus-active:text-red_text
 focus-active:text-green_text
+ disabled:bg-primary_disabled
+  disabled:bg-secondary_disabled
 `

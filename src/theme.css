@@ -3,110 +3,112 @@
 @tailwind utilities;
 
 @layer base {
-    :root {
-        /* PRIMARY */
-        --primary: #f86e4f;
-        --primary_rgb: 248, 110, 79;
-        --primary_hover: #f8604f;
-        --primary_active: #d9543f;
-        --primary_disabled: #faa28e; /*noca cor*/
-        /* SECONDARY */
-        --secondary: #4ebdf8;
-        --secondary_rgb: 78, 189, 248;
-        --secondary_hover: #4fcbf8;
-        --secondary_active: #3fabd9;
-        --secondary_disabled: #9fd7f4; /*32 87 116*/
-        /* BACKGROUND */
-        --background: #f0f0f0;
-        --form: #fafafa;
-        --menu: #fff;
-        --menu_hover: #d6ccd3;
-
-        /* TEXT */
-        --title: #0f0f0f;
-        --description: #433d41;
-        --subtitle: #59555e;
-        --placeholder: #b3b3b3;
-        /* OTHER */
-        --neutral: #e1e1e1;
-        --border: #d2d2d2;
-    }
-}
-
-.theme-dark {
+  :root {
     /* PRIMARY */
     --primary: #f86e4f;
     --primary_rgb: 248, 110, 79;
     --primary_hover: #f8604f;
     --primary_active: #d9543f;
-    --primary_disabled: #742f20;
+    --primary_disabled: #faa28e; /*noca cor*/
     /* SECONDARY */
     --secondary: #4ebdf8;
     --secondary_rgb: 78, 189, 248;
     --secondary_hover: #4fcbf8;
     --secondary_active: #3fabd9;
-    --secondary_disabled: #205774;
+    --secondary_disabled: #9fd7f4; /*32 87 116*/
     /* BACKGROUND */
-    --background: #171717;
-    --form: #1c1c1c;
-    --menu: #212121;
-    --menu_hover: #33292f;
+    --background: #f0f0f0;
+    --form: #fafafa;
+    --menu: #fff;
+    --menu_hover: #d6ccd3;
 
     /* TEXT */
-    --title: #f0f0f0;
-    --description: #c2bcc0;
-    --subtitle: #a6a1aa;
-    --placeholder: #4d4d4d;
+    --title: #0f0f0f;
+    --description: #433d41;
+    --subtitle: #59555e;
+    --placeholder: #b3b3b3;
     /* OTHER */
-    --neutral: #3d3d3d;
-    --border: #707070;
+    --neutral: #e1e1e1;
+    --border: #d2d2d2;
+  }
+}
+
+.theme-dark {
+  /* PRIMARY */
+  --primary: #f86e4f;
+  --primary_rgb: 248, 110, 79;
+  --primary_hover: #f8604f;
+  --primary_active: #d9543f;
+  --primary_disabled: #742f20;
+  /* SECONDARY */
+  --secondary: #4ebdf8;
+  --secondary_rgb: 78, 189, 248;
+  --secondary_hover: #4fcbf8;
+  --secondary_active: #3fabd9;
+  --secondary_disabled: #205774;
+  /* BACKGROUND */
+  --background: #171717;
+  --form: #1c1c1c;
+  --menu: #212121;
+  --menu_hover: #33292f;
+
+  /* TEXT */
+  --title: #f0f0f0;
+  --description: #c2bcc0;
+  --subtitle: #a6a1aa;
+  --placeholder: #4d4d4d;
+  /* OTHER */
+  --neutral: #3d3d3d;
+  --border: #707070;
 }
 
 *::-webkit-scrollbar {
-    min-height: 0.9rem;
-    width: 0.9rem;
+  min-height: 0.9rem;
+  width: 0.9rem;
+  padding: 2px !important;
 }
 *::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0);
+  background: rgba(0, 0, 0, 0);
 }
 
 *::-webkit-scrollbar-thumb {
-    background: var(--border);
-    border-radius: 1rem;
-    filter: (30px 10px 4px #4444dd);
-    -webkit-filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
-    border: 0.2rem solid var(--background);
-    transition-duration: 200ms;
+  background: var(--border);
+ margin: 1rem;
+  border-radius: 1rem;
+  border: 0.2rem solid var(--form);
+  margin: 2px;
+  transition-duration: 200ms;
 }
 *::-webkit-scrollbar-thumb:hover {
-    background: var(--placeholder);
-    transition-duration: 200ms;
+  background: var(--placeholder);
+  transition-duration: 200ms;
 }
 *::-webkit-scrollbar-thumb:active {
-    filter: brightness(0.6);
+  filter: brightness(0.6);
 }
+
 *::-webkit-scrollbar-corner {
-    background: transparent;
+  display: none;
 }
 textarea {
-    resize: none;
-    line-height: 1rem;
+  resize: none;
+  line-height: 1rem;
 }
 ::-webkit-calendar-picker-indicator {
-    filter: invert(0.8) brightness(25%);
+  filter: invert(0.8) brightness(25%);
 }
 .theme-dark ::-webkit-calendar-picker-indicator {
-    filter: invert(1);
+  filter: invert(1);
 }
 
 body {
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    background: var(--background);
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--background);
 }
 
-#root{
-       width: 100vw;
-    height: 100vh;
+#root {
+  width: 100vw;
+  height: 100vh;
 }
